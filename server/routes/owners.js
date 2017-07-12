@@ -16,7 +16,7 @@ router.get('/', function(req, res){
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
-      var queryText = 'SELECT * FROM "owners"';
+      var queryText = 'SELECT * FROM "owners";';
       db.query(queryText, function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
@@ -39,9 +39,9 @@ router.post('/', function(req, res) {
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
-      var queryText = 'INSERT INTO "todolist" ("task", "completionstatus")' +
+      var queryText = 'INSERT INTO "owners" ("first_name", "last_name")' +
       ' VALUES ($1, $2);';
-      db.query(queryText, [todo.task, todo.status], function(errorMakingQuery, result){
+      db.query(queryText, [todo.first_name, todo.last_name], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
           console.log('Attempted to query with', queryText);
