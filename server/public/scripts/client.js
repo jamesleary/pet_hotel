@@ -1,14 +1,14 @@
 console.log('client.js sourced')
 $(document).ready(function(){
   console.log("jquery sourced");
-  getOwnerList();
+  refreshOwners();
   addClickHandlers();
 });
 
 function addClickHandlers(){
   $("#submitOwner").on('click', function(){
     console.log('submit button clicked');
-    getOwnerList
+    addOwner
   })
 }
 
@@ -30,10 +30,11 @@ function appendOwnersToSelect(listOfOwners) {
   }
 }
 
-function getOwnerList(){
+function addOwner(){
   var owner = {};
-  owner.firstName = $('#ownerFirstName').val();
-  owner.lastName = $('#ownerLastName').val();
+  owner.first_name = $('#ownerFirstName').val();
+  owner.last_name = $('#ownerLastName').val();
+  console.log(owner);
   $.ajax({
     type: "POST",
     url: "/owners",
