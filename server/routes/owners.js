@@ -16,7 +16,7 @@ router.get('/', function(req, res){
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
-      var queryText = 'SELECT * FROM "todolist" ORDER BY "completionstatus" ASC;';
+      var queryText = 'SELECT * FROM "owners"';
       db.query(queryText, function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {

@@ -3,9 +3,9 @@ var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
 var port = process.env.PORT || 5000;
-var owners = require('.routes/owners.js');
-var petinfo = require('.routes/petinfo.js');
-var updates = require('.routes/updates.js');
+var owners = require('./routes/owners.js');
+var petinfo = require('./routes/petinfo.js');
+var updates = require('./routes/updates.js');
 
 app.use(bodyParser.urlencoded({extended: true}));
 
