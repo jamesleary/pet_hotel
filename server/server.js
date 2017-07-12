@@ -6,6 +6,7 @@ var port = process.env.PORT || 5000;
 var owners = require('./routes/owners.js');
 var petinfo = require('./routes/petinfo.js');
 var updates = require('./routes/updates.js');
+var pool = new pg.Pool(config);
 
 app.use(bodyParser.urlencoded({extended: true}));
 
