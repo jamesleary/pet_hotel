@@ -1,11 +1,15 @@
 console.log('client.js sourced')
 $(document).ready(function(){
   console.log("jquery sourced");
-
+  getOwnerList();
+  addClickHandlers();
 });
 
 function addClickHandlers(){
-  $("#submitOwner").on('click', getOwnerList)
+  $("#submitOwner").on('click', function(){
+    console.log('submit button clicked');
+    getOwnerList
+  })
 }
 
 function refreshOwners() {
@@ -32,7 +36,7 @@ function getOwnerList(){
   owner.lastName = $('#ownerLastName').val();
   $.ajax({
     type: "POST",
-    url: "owners/",
+    url: "/owners",
     data: owner,
     success: function(response){
       console.log(response);
