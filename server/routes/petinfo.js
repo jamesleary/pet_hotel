@@ -56,6 +56,7 @@ router.post('/', function(req, res) {
         }
       }); // end query
     } // end if
-  }) // end pool
+  }); // end pool
+  }); //end router.post
 
 module.exports = router;
