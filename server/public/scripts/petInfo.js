@@ -16,10 +16,10 @@ function clickHandlers(){
     };
 
     addPets(petObject);
-    // $('#ownerNames').val('');
-    // $('#petName').val('');
-    // $('#petColor').val('');
-    // $('#petBreed').val('') ;
+    $('#ownerNames').val('');
+    $('#petName').val('');
+    $('#petColor').val('');
+    $('#petBreed').val('') ;
   });
 }
 //on click addPets to database
