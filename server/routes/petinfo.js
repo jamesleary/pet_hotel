@@ -31,7 +31,7 @@ router.get('/', function(req, res){
         }
       }); // end query
     } // end if
-  }) // end pool
+  }); // end pool
 });
 router.post('/', function(req, res) {
   var newPet = req.body;
