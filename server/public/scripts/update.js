@@ -1,14 +1,16 @@
 console.log('update sourced');
 $(document).ready(function(){
   console.log('jQuery Sourced');
-  deletePet();
+  addDelete();
 });
 
+function addDelete() {
 $('#viewPets').on('click', '.Delete', function () {
-  var petId = $(this).data('petId');
+  var petId = $(this).data('petid');
   console.log($(this));
   deletePet(petId);
 });
+}
 
 function deletePet(petId) {
 
