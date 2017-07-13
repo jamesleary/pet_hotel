@@ -1,11 +1,15 @@
 console.log('client.js sourced')
 $(document).ready(function(){
   console.log("jquery sourced");
-
+  refreshOwners();
+  addClickHandlers();
 });
 
 function addClickHandlers(){
-  $("#submitOwner").on('click', getOwnerList)
+  $("#submitOwner").on('click', function(){
+    console.log('submit button clicked');
+    addOwner()
+  })
 }
 
 function refreshOwners() {
@@ -20,19 +24,24 @@ function refreshOwners() {
 }
 
 function appendOwnersToSelect(listOfOwners) {
-  for(var i = 0; i < listOfOwners.length; i++){
-    var currentOwner = listOfOwners[i];
-    $('#ownerNames').append('<option value="' + owner.id + '">' + owner.firstName + ' ' + owner.lastName + '</option>');
+  var arrayOfOwners = listOfOwners.tasks;
+  for(var i = 0; i < arrayOfOwners.length; i++){
+    var currentOwner = arrayOfOwners[i];
+    console.log(currentOwner);
+    $('#ownerNames').append('<option value="' + currentOwner.id + '">' + currentOwner.first_name + ' ' + currentOwner.last_name + '</option>');
   }
 }
 
-function getOwnerList(){
+function addOwner(){
   var owner = {};
-  owner.firstName = $('#ownerFirstName').val();
-  owner.lastName = $('#ownerLastName').val();
+  owner.first_name = $('#ownerFirstName').val();
+  owner.last_name = $('#ownerLastName').val();
+  $('#ownerLastName').val("");
+  $('#ownerFirstName').val("");
+  console.log(owner);
   $.ajax({
     type: "POST",
-    url: "owners/",
+    url: "/owners",
     data: owner,
     success: function(response){
       console.log(response);
