@@ -19,7 +19,8 @@ router.get('/', function(req, res){
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
-      var queryText = 'SELECT * FROM "pets";';
+      var queryText = 'SELECT "pets".*, "owners"."last_name", "first_name" FROM "pets" ' +
+'JOIN "owners" ON "owners"."id" = "pets"."owner_id";';
       db.query(queryText, function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
