@@ -4,6 +4,10 @@ $(document).ready(function(){
   refreshPetTable();
   refreshOwners();
   addClickHandlers();
+
+  $("#viewPets").on("click", ".check", function(){
+    console.log($(this).text);
+  })
 });
 
 function addClickHandlers(){
@@ -66,13 +70,19 @@ function appendPetTable(arrayOfPets){
   for (var i = 0; i < arrayOfPets.length; i++) {
     var pet = arrayOfPets[i];
     var $tr = $("<tr></tr>");
-    $tr.append("<td>" + pet.owner_id + "<td>");
-    $tr.append("<td>" + pet.pet_name + "<td>");
-    $tr.append("<td>" + pet.breed + "<td>");
-    $tr.append("<td>" + pet.color + "<td>");
-    $tr.append("<td><button class='update'>Update</button><td>");
-    $tr.append("<td><button class='Delete'>Update</button><td>");
-    $tr.append("<td><button class='check'>Check In</button><td>");
+    $tr.append("<td data-ownerId='" + pet.owner_id + "'>" + pet.first_name + " " + pet.last_name + "</td>");
+    $tr.append("<td contenteditable='true' class='name" + pet.id + "'>" + pet.pet_name + "</td>");
+    $tr.append("<td contenteditable='true' class='breed" + pet.id + "'>" + pet.breed + "</td>");
+    $tr.append("<td contenteditable='true' class='color" + pet.id + "'>" + pet.color + "</td>");
+    $tr.append("<td><button class='update' data-id='" + pet.id + "'>Update</button></td>");
+    $tr.append("<td><button class='Delete' data-id='" + pet.id + "'>Delete</button></td>");
+    if(pet.check_in){
+      $tr.append("<td><button class='check' data-id='" + pet.id + "'>Check In</button></td>");
+    }
+    else /*(pet.check_in = false)*/{
+      $tr.append("<td><button class='check' data-id='" + pet.id + "'>Check Out</button></td>");
+    }
+
     $("#viewPets").append($tr);
   }
 }
