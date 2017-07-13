@@ -8,7 +8,7 @@ $(document).ready(function(){
 function addClickHandlers(){
   $("#submitOwner").on('click', function(){
     console.log('submit button clicked');
-    addOwner
+    addOwner()
   })
 }
 
@@ -24,9 +24,11 @@ function refreshOwners() {
 }
 
 function appendOwnersToSelect(listOfOwners) {
-  for(var i = 0; i < listOfOwners.length; i++){
-    var currentOwner = listOfOwners[i];
-    $('#ownerNames').append('<option value="' + owner.id + '">' + owner.firstName + ' ' + owner.lastName + '</option>');
+  var arrayOfOwners = listOfOwners.tasks;
+  for(var i = 0; i < arrayOfOwners.length; i++){
+    var currentOwner = arrayOfOwners[i];
+    console.log(currentOwner);
+    $('#ownerNames').append('<option value="' + currentOwner.id + '">' + currentOwner.first_name + ' ' + currentOwner.last_name + '</option>');
   }
 }
 
@@ -34,6 +36,8 @@ function addOwner(){
   var owner = {};
   owner.first_name = $('#ownerFirstName').val();
   owner.last_name = $('#ownerLastName').val();
+  $('#ownerLastName').val("");
+  $('#ownerFirstName').val("");
   console.log(owner);
   $.ajax({
     type: "POST",
