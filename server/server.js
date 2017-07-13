@@ -6,6 +6,7 @@ var port = process.env.PORT || 5000;
 var owners = require('./routes/owners.js');
 var petinfo = require('./routes/petinfo.js');
 var updates = require('./routes/updates.js');
+var checkIn = require('./routes/checkInCheckOut.js');
 
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -15,6 +16,8 @@ app.use('/owners', owners);
 app.use('/petInfo', petinfo);
 
 app.use('/updateTable', updates);
+
+app.use('/checkIn', checkIn);
 
 app.get('/*', function(req, res){
   var file = req.params[0] || '/views/index.html';
