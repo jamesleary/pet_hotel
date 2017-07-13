@@ -22,8 +22,8 @@ router.put('/', function(req, res){
       res.sendStatus(500);
     } else {
       console.log(checkIn);
-      var queryText = 'UPDATE "visits" SET "is_complete" = $1 WHERE id = $2;';
-      db.query(queryText, [checkIn.is_complete], function(errorMakingQuery, result){
+      var queryText = 'UPDATE "pets" SET "check_in" = $1 WHERE id = $2;';
+      db.query(queryText, [checkIn.check_in, checkIn.id], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
           console.log('Attempted to query with', queryText);
