@@ -14,14 +14,26 @@ function clickHandlers(){
       color: $('#petColor').val(),
       breed: $('#petBreed').val()
     };
-
     addPets(petObject);
     $('#ownerNames').val('');
     $('#petName').val('');
     $('#petColor').val('');
     $('#petBreed').val('') ;
   });
-}
+
+  $('#viewPets').on('click','.update',function(){
+
+    console.log('update pet click');
+    console.log($(this).parent().parent());
+    var updatePet = {};
+      updatePet.name = $('.name'+ $(this).data('id'));
+      updatePet.breed = $('.breed' + $(this).data('id'));
+      updatePet.color = $('.color' + $(this).data('id'));
+      updatePet.id = $(this).data('id');
+
+  updatePets(updatePet);
+  });
+}//end of click handlers
 //on click addPets to database
 function addPets(newPet){
   console.log( 'in addTask', newPet );
@@ -36,3 +48,15 @@ function addPets(newPet){
     } // end success
   }); //end ajax
 }
+function updatePets(updatePet){
+
+    $.ajax({
+      url: '/updateTable',
+      type: 'PUT',
+      data: updatePet,
+      success: function(response){
+        console.log(response);
+        refreshPetTable();
+      } // end success
+    }); //end ajax
+  }
