@@ -10,6 +10,7 @@ pet_name character varying(60),
 breed character varying(80),
 color character varying(60),
 owner_id integer REFERENCES owners
+check_in BOOLEAN NOT NULL DEFAULT FALSE;
 );
 
 CREATE TABLE visits (
@@ -18,10 +19,6 @@ check_in character varying(60),
 check_out character varying(60),
 pet_id integer REFERENCES pets
 );
-
-//added a column for complete
-ALTER TABLE visits
-ADD COLUMN is_complete BOOLEAN NOT NULL DEFAULT FALSE;
 
 INSERT INTO owners
 VALUES (1, 'James', 'Leary'),
