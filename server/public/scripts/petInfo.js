@@ -24,13 +24,13 @@ function clickHandlers(){
   $('#viewPets').on('click','.update',function(){
 
     console.log('update pet click');
-    console.log($(this).parent().parent());
-    var updatePet = {};
-      updatePet.name = $('.name'+ $(this).data('id'));
-      updatePet.breed = $('.breed' + $(this).data('id'));
-      updatePet.color = $('.color' + $(this).data('id'));
-      updatePet.id = $(this).data('id');
 
+    var updatePet = {};
+      updatePet.name = $('.name'+ $(this).data('id')).text();
+      updatePet.breed = $('.breed' + $(this).data('id')).text();
+      updatePet.color = $('.color' + $(this).data('id')).text();
+      updatePet.id = $(this).data('id');
+console.log(updatePet);
   updatePets(updatePet);
   });
 }//end of click handlers
@@ -49,9 +49,10 @@ function addPets(newPet){
   }); //end ajax
 }
 function updatePets(updatePet){
+  console.log('updatepets');
 
     $.ajax({
-      url: '/updateTable',
+      url: '/updateTable/pets',
       type: 'PUT',
       data: updatePet,
       success: function(response){
