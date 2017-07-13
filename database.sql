@@ -19,6 +19,10 @@ check_out character varying(60),
 pet_id integer REFERENCES pets
 );
 
+//added a column for complete
+ALTER TABLE visits
+ADD COLUMN is_complete BOOLEAN NOT NULL DEFAULT FALSE;
+
 INSERT INTO owners
 VALUES (1, 'James', 'Leary'),
 (2, 'Dexter', 'St-Pierre'),
