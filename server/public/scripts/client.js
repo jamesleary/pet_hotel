@@ -36,6 +36,8 @@ function addOwner(){
   var owner = {};
   owner.first_name = $('#ownerFirstName').val();
   owner.last_name = $('#ownerLastName').val();
+  $('#ownerLastName').val("");
+  $('#ownerFirstName').val("");
   console.log(owner);
   $.ajax({
     type: "POST",
